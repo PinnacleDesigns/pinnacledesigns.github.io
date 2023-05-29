@@ -1,0 +1,836 @@
+
+<html>
+
+<head>
+    <meta charset="us-ascii">
+    <title>CobbTools - SADOC</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+    <link href="/layout-styles.css" rel="stylesheet">
+</head>
+
+<body data-gr-ext-installed="" data-new-gr-c-s-check-loaded="14.1052.0" data-new-gr-c-s-loaded="14.1052.0">
+
+    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet" />
+
+    <div class="tab">
+        <button onclick="document.location='/LSEMS/tool.html'"><img src="https://i.imgur.com/BVmHRvm.png"
+                style="width: 20px; height: 20px; margin: 3px" />LSEMS</button>
+        <button onclick="document.location='/SADOC/tool.html'"
+            style="background-color: #333333; border-style: solid; border-width: 1px; border-color: #E91E63;"><img
+                src="https://i.imgur.com/35GrXw3.png" style="width: 20px; height: 20px; margin: 3px" />SADOC</button>
+        <button onclick="document.location='/SASG/tool.html'"><img src="https://i.imgur.com/vIXlHkt.png"
+                style="width: 20px; height: 20px; margin: 3px" />SASG</button>
+        <button onclick="document.location='/SAJB/tool.html'"><img src="https://i.imgur.com/eV3928c.png"
+                style="width: 20px; height: 20px; margin: 3px" />SAJB</button>
+        <button onclick="document.location='/Weazel/tool.html'"><img src="https://i.imgur.com/hRgnV3c.png"
+                style="width: 20px; height: 20px; margin: 3px" />Weazel</button>
+        <button style="float:right" onclick="document.location='/index.html'">
+            <span style="color:#E91E63;">CobbTools</span>
+        </button>
+    </div>
+
+    <div class="tab"
+        style="border-top: 1px; border-left: 0px;border-right: 0px;border-bottom: 0px; border-color: #333333; border-style: solid;">
+        <!--<button onclick="document.location='index.html'">HOME</button>-->
+        <button class="tablinks active" onclick="openMenu(event, 'Signature')">Signature
+            Maker</button><span class="separator">|</span><button class="tablinks"
+            onclick="openMenu(event, 'Banner')">Banner Maker</button><span class="separator">|</span><button
+            class="tablinks" onclick="openMenu(event, 'Header')">Header BBCode Maker</button><span
+            class="separator">|</span><button class="tablinks" onclick="openMenu(event, 'Charge')">Charge
+            Report Generator</button><span class="separator">|</span><button class="tablinks "
+            onclick="openMenu(event, '1015')">10-15
+            Report Generator</button>
+        <span class="separator">|</span><button class="tablinks " onclick="openMenu(event, 'MSIProfile')">MSI Profile
+            Generator</button>
+        <span class="separator">|</span><button class="tablinks " onclick="openMenu(event, 'MSILog')">MSI Log
+            Generator</button>
+    </div>
+
+    <div class="tabcontent" id="Signature" style="display: block;">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Name:
+                    </div>
+                    <div class="col-md-10">
+                        <input id="txtName" name="fname" type="text" class="form-control" value="SOLOMON COBB"
+                            style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Badge number:
+                    </div>
+                    <div class="col-md-10">
+                        <input id="txtBadge" name="lname" type="text" class="form-control" value="366"
+                            style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Rank:
+                    </div>
+                    <div class="col-md-10">
+                        <select id="rankSelect" class="form-select" style="width: 600px">
+                            <option value="rankcco">CORRECTIONAL CUSTODIAN OFFICER</option>
+                            <option value="rankcot" selected>CORRECTIONAL TRAINEE</option>
+                            <option value="rankco1">CORRECTIONAL OFFICER I</option>
+                            <option value="rankco2">CORRECTIONAL OFFICER II</option>
+                            <option value="rankco3">CORRECTIONAL OFFICER III</option>
+                            <option value="ranksco1">SENIOR CORRECTIONAL OFFICER</option>
+                            <option value="rankcorporal">CORPORAL</option>
+                            <option value="ranksergeant">SERGEANT</option>
+                            <option value="rank1lt">LIEUTENANT</option>
+                            <option value="rankcaptain">CAPTAIN</option>
+                            <option value="rankcommander">COMMANDER</option>
+                            <option value="rankasswarden">ASSISTANT WARDEN</option>
+                            <option value="rankdepwarden">DEPUTY WARDEN</option>
+                            <option value="rankwarden">WARDEN</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Divisions:
+                    </div>
+                    <div class="col-md-10">
+                        <input id="txtLine1" name="lname" style="width: 600px" type="text" class="form-control"
+                            value="HUMAN RESOURCES     ASSISTANT TO THE GROUNDSKEEPER" />
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                    </div>
+                    <div class="col-md-10">
+                        <input id="txtLine2" name="lname" style="width: 600px" type="text" class="form-control"
+                            value="SANITATION EMERGENCY RESPONSE TEAM     DIVISIONAL COMMAND" />
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                    </div>
+                    <div class="col-md-10">
+                        <input id="txtLine3" name="lname" style="width: 600px" type="text" class="form-control"
+                            value="" />
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+
+                    </div>
+                    <div class="col-md-10">
+                        <button type="button" class="w3-button w3-pink mr-2" onclick="createSignature()">Submit</button>
+                        <span style="font-size: small;">
+                            <br /><br />
+                            Right click the image below and &quot;save image as&quot; and then upload it to
+                            somewhere <a href="https://imgur.com/upload">like Imgur</a> to host and use in forum
+                            signature.
+                        </span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="card mt-2">
+            <div class="card-body">
+                <div style="width: 1480px"><canvas height="337" id="canvas" width="1480"></canvas></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="tabcontent" id="Header" style="display: none;">
+
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Text:
+                    </div>
+                    <div class="col-md-10">
+                        <input id="txtText" style="width: 600px" type="text" class="form-control"
+                            value="Header Title" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Type:
+                    </div>
+                    <div class="col-md-10">
+                        <select id="bbCodeMakerType" class="form-select" style="width: 600px">
+                            <option value="typeDOC">Default DOC</option>
+                            <option value="typeCMT">CMT</option>
+                            <option value="typeHR">HR </option>
+                            <option value="typeCERT">CERT</option>
+                            <option value="typePR">PR</option>
+                            <option value="typeGK">Groundskeeping</option>
+                            <option value="typeCFT">CFT</option>
+                            <option value="typeCCO">CCO</option>
+                            <option value="typeMSI">MSI</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+
+                    </div>
+                    <div class="col-md-10">
+                        <button type="button" class="w3-button w3-pink" onclick="createHeader()">
+                            Submit and Copy BBCode to clipboard</button>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Output:
+                    </div>
+                    <div class="col-md-10">
+                        <textarea cols="50" id="headerDisplay" style="width: 600px" rows="1"
+                            class="form-control">BBCode will appear here</textarea>
+
+                        <p id="copiedtxt" style="color: red"></p>
+                        <canvas height="32" id="canvas2" style="display:none" width="1200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tabcontent" id="Banner" style="display: none;">
+
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Title:
+                    </div>
+                    <div class="col-md-10">
+                        <input id="txtTextbanner" style="width: 600px" type="text" class="form-control"
+                            value="Main Title" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Subtitle:
+                    </div>
+                    <div class="col-md-10">
+                        <input id="txtTextbanner2" name="fname" style="width: 600px" type="text" class="form-control"
+                            value="Subtitle" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Type:
+                    </div>
+                    <div class="col-md-10">
+                        <select id="bannerType" class="form-select" style="width: 600px">
+                            <option value="DOC">Default DOC</option>
+                            <option value="CERT">CERT</option>
+                            <option value="HR">HR</option>
+                            <option value="CMT">CMT</option>
+                            <option value="PR">PR</option>
+                            <option value="GK">Groundskeeping</option>
+                            <option value="CFT">CFT</option>
+                            <option value="RR">FRD</option>
+                            <option value="CID">CID</option>
+                            <option value="DOG">K9</option>
+                            <option value="CS">CS</option>
+                            <option value="CCO">CCO</option>
+                            <option value="MSI">MSI</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+
+                    </div>
+                    <div class="col-md-10">
+                        <button type="button" class="w3-button w3-pink" onclick="createBannerImg()">Submit</button><span
+                            style="font-size: small;">
+                            <br /><br />
+                            Right click the image below and &quot;save image as&quot; and then upload it to
+                            somewhere <a href="https://imgur.com/upload">like Imgur</a> to host.
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card mt-2">
+            <div class="card-body">
+                <div style="width: 1442px" class="mt-2"></div><canvas height="309" id="canvas4" width="1442"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+    <div class="tabcontent" id="Charge" style="display: none;">
+
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Your Name:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtChargeName" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Badge Number:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtChargeBadge" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Asssisting Officer Badge Number:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtAssisting" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Inmate Name:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtInmateName" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Charges Added:
+                    </div>
+                    <div class="col-md-10">
+                        <textarea type="text" id="txtCharges" class="form-control" style="width: 600px" rows="5">
+[list]
+[*]
+[*]
+[*]
+[/list]
+                                        </textArea>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Reason:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtReason" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Additional Prison Time:
+                        <br /><span style="font-size: x-small; font-weight: normal">(( Minutes ))</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtAdditionalTime" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Time &amp; Date of Charges:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="datetime-local" id="txtTime" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Additional Notes:
+                        <br /><span style="font-size: x-small; font-weight: normal">(( Also attach any ooc rp for CCTV
+                            with /time etc/
+                            ))</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtAdditionalNotes" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Image Link to Mugshot:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMugshot" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                    </div>
+                    <div class="col-md-10">
+                        <button type="button" id="btnCopy" onClick="createChargeReport();"
+                            class="w3-button w3-pink">Submit and
+                            copy to clipboard</button>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Output:
+                    </div>
+                    <div class="col-md-10">
+                        <textarea cols="50" id="displayBB" name="w3review" rows="10" class="form-control"
+                            style="width: 600px">BBCode will appear here</textarea>
+                        <p id='copyChargeReportSuccess' style="color: red"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tabcontent" id="1015" style="display: none;">
+
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Paste full row from 10-15 spreadsheet:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtPaste1015" class="form-control" style="width: 600px" />
+                        <a href="https://i.imgur.com/UiWJb6m.gif" target="_blank">Click here for an example</a>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+
+                    </div>
+                    <div class="col-md-10">
+                        <button type="button" id="btnCopy1015" onClick="copy1015Report();" class="w3-button w3-pink">
+                            Submit and copy to clipboard</button>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Output:
+                    </div>
+                    <div class="col-md-10">
+                        <textarea cols="50" id="displayBB1015" name="w3review" rows="10" class="form-control"
+                            style="width: 600px">BBCode will appear here</textarea>
+                        <p id='copySuccess1015' style="color: red"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tabcontent" id="MSIProfile" style="display: none;">
+
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        MSI Ranking:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileRanking" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        MSI Name:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileName" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Age:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileAge" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Affiliation:
+                        <br /><span style="font-size: x-small; font-weight: normal">(If Applicable)</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileAffiliation" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Psychological Issues:
+                        <br /><span style="font-size: x-small; font-weight: normal">(If Applicable)</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfilePsychIssues" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Processing:
+                        <br /><span style="font-size: x-small; font-weight: normal">(Number of Guards to be
+                            present)</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileProcessing" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Firearms during handling:
+                        <br /><span style="font-size: x-small; font-weight: normal">(ex. "None" if it poses a
+                            risk)</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileFirearms" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Inmate Classification Tags:
+                        <br /><span style="font-size: x-small; font-weight: normal">(Written as: "TAG1 | TAG2
+                            |...")</span>:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileClassTags" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Physical Description:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfilePhysicalDesc" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Background Information:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileBackgroundInfo" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Containment Procedures:
+                        <br /><span style="font-size: x-small; font-weight: normal">(Protocols for processing)</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileContainment" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Handling Procedures:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileHandlingProcedures" class="form-control"
+                            style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Known Targets:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSIProfileKnownTargets" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                    </div>
+                    <div class="col-md-10">
+                        <button type="button" id="btnCopy" onClick="createMsiProfile();"
+                            class="w3-button w3-pink">Submit and
+                            copy to clipboard</button>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Output:
+                    </div>
+                    <div class="col-md-10">
+                        <textarea cols="50" id="displayMSIProfileBB" name="w3review" rows="10" class="form-control"
+                            style="width: 600px">BBCode will appear here</textarea>
+                        <p id='copyMSIProfileSuccess' style="color: red"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="tabcontent" id="MSILog" style="display: none;">
+
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Name & Badge Number:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogNameBadge" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Date:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="date" id="txtMSILogDate" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Officers Involved:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogOfficersInvolved" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Name of the MSI:
+                        <br /><span style="font-size: x-small; font-weight: normal">(If Applicable)</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogName" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Reasoning for Report:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="radio" id="radioActivity" name="MSILogreason" value="Activity Report" checked>
+                        <label for="radioActivity">Activity Report</label>
+                        <br>
+                        <input type="radio" id="radioIntel" name="MSILogreason" value="Intel Report">
+                        <label for="radioIntel">Intel Report</label>
+                        <br>
+                        <input type="radio" id="radioIncident" name="MSILogreason" value="Incident Report">
+                        <label for="radioIncident">Incident Report</label>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Actions of the MSI:
+                        <br /><span style="font-size: x-small; font-weight: normal">(Behavior and actions exhibited by
+                            the MSI during the encounter)</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogActions" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Response of Officers:
+                        <br /><span style="font-size: x-small; font-weight: normal">(Detail how the officers involved
+                            responded to the situation)</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogOfficersResponse" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Presence of Threats:
+                        <br /><span style="font-size: x-small; font-weight: normal">(Specify the situation posed risks
+                            to the safety of officers, staff, or other inmates")</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogThreatsPresence" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Injuries or Damages:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogInjuriesDamages" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Compliance of the MSI:
+                        <br /><span style="font-size: x-small; font-weight: normal">(Indicate whether the MSI complied
+                            with instructions given by the officers)</span>:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogCompliance" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Obtained Information:
+                        <br /><span style="font-size: x-small; font-weight: normal">(Describe any new information or
+                            intelligence gathered as a result of the encounter)</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogInformationObtained" class="form-control"
+                            style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Conclusion:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogConclusion" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Attachments:
+                        <br /><span style="font-size: x-small; font-weight: normal">(Bodycam / CCTV / Duty Reports /
+                            Other Supporting Documentation)</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" id="txtMSILogAttachments" class="form-control" style="width: 600px" />
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                    </div>
+                    <div class="col-md-10">
+                        <button type="button" id="btnCopy" onClick="createMSILog();" class="w3-button w3-pink">Submit
+                            and
+                            copy to clipboard</button>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                        Output:
+                    </div>
+                    <div class="col-md-10">
+                        <textarea cols="50" id="displayMSILogBB" name="w3review" rows="10" class="form-control"
+                            style="width: 600px">BBCode will appear here</textarea>
+                        <p id='copyMSILogSuccess' style="color: red"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <button id="kourtneyBtn" onclick="toggleKourtneyMode()"> </button>
+    <div id="kourtneyContainer"></div>
+
+    <script src="/SADOC/sadoc.js"></script>
+
+    <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+</body>
+
+<footer>
+    <div class="container">
+        <span class="text-muted;">
+            <hr />
+            <center>
+                <em style="color: #E91E63">
+                    If you have any issues or requests drop a message to <span
+                        style="font-weight: bold">Ash-#0001</span> on discord
+                </em>
+            </center>
+            <br />
+            <span style="font-family: comic sans ms,cursive; color:#262626">.</span>
+            <span style="font-family: Franklin Gothic Heavy; color:#262626">.</span>
+            <span style="font-family: BTBrikRegular; color:#262626">.</span>
+            <span style="font-family: ITC Eras; color:#262626">.</span>
+            <span style="font-family: MSU1; color:#262626">.</span>
+            <span style="font-family: PressStart; color:#262626">.</span>
+        </span>
+    </div>
+</footer>
+
+</html>
