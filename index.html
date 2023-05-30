@@ -1,836 +1,415 @@
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="us-ascii">
-    <title>CobbTools - SADOC</title>
-
+    <meta charset="UTF-8">
+    <title>Signature generator</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../bootstrap1.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
-    <link href="/layout-styles.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: "MSU1";
+            src: url('../font/MSU1.ttf') format('embedded-opentype'),
+            /* Internet Explorer */ url('../font/MSU1.ttf') format('woff2'),
+            /* Super Modern Browsers */ url('../font/MSU1.ttf') format('woff'),
+            /* Pretty Modern Browsers */ url('../font/MSU1.ttf') format('truetype'),
+            /* Safari, Android, iOS */ url('../font/MSU1.ttf') format('svg');
+            /* Legacy iOS */
+        }
+    </style>
 </head>
 
-<body data-gr-ext-installed="" data-new-gr-c-s-check-loaded="14.1052.0" data-new-gr-c-s-loaded="14.1052.0">
+<body>
+    <div id="sidebar">
+        <img src="../img/logo.png" class="logo">
+        <h3>
+            <a href="../index.html">Report Generator</a>
+        </h3>
 
-    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet" />
+        <div class="sidebar-menu">
+            <a href="../patrol/index.html"><i class="fa-solid fa-book"></i> Patrol Report</a>
+            <a href="../index.html"><i class="fa-solid fa-handcuffs"></i> Arrest Report</a>
+            <a href="../warrant/index.html"><i class="fa-solid fa-pen-to-square"></i> Warrant Report</a>
+            <a href="../impound/index.html"><i class="fa-solid fa-car"></i> Impound Report</a>
+            <a href="../impound-release/index.html"><i class="fa-solid fa-car-tunnel"></i> Impound Release Report</a>
+            <a href="../traffic-stop/index.html"><i class="fa-solid fa-traffic-light"></i> Traffic Stop Report</a>
+            <a href="../use-of-force/index.html"><i class="fa-solid fa-gun"></i> Use of Force Report</a>
+            <a href="https://gov.eclipse-rp.net/viewtopic.php?t=105513" target="_blank"><i class="fa-solid fa-scale-balanced"></i> Penal Code</a>
+            <a href="../signature/index.html"><i class="fa-solid fa-signature"></i> Signature Generator</a>
+            <a href="../titleSubtitle/index.html"><i class="fa-solid fa-heading"></i> Title Generators</a>
+            <a href="../suggestion/index.html"><i class="fa-solid fa-bug"></i> Submit a suggestion / Report a bug</a>
+        </div>
 
-    <div class="tab">
-        <button onclick="document.location='/LSEMS/tool.html'"><img src="https://i.imgur.com/BVmHRvm.png"
-                style="width: 20px; height: 20px; margin: 3px" />LSEMS</button>
-        <button onclick="document.location='/SADOC/tool.html'"
-            style="background-color: #333333; border-style: solid; border-width: 1px; border-color: #E91E63;"><img
-                src="https://i.imgur.com/35GrXw3.png" style="width: 20px; height: 20px; margin: 3px" />SADOC</button>
-        <button onclick="document.location='/SASG/tool.html'"><img src="https://i.imgur.com/vIXlHkt.png"
-                style="width: 20px; height: 20px; margin: 3px" />SASG</button>
-        <button onclick="document.location='/SAJB/tool.html'"><img src="https://i.imgur.com/eV3928c.png"
-                style="width: 20px; height: 20px; margin: 3px" />SAJB</button>
-        <button onclick="document.location='/Weazel/tool.html'"><img src="https://i.imgur.com/hRgnV3c.png"
-                style="width: 20px; height: 20px; margin: 3px" />Weazel</button>
-        <button style="float:right" onclick="document.location='/index.html'">
-            <span style="color:#E91E63;">CobbTools</span>
-        </button>
+        <div id="disclaimer" class="row">
+            <div class="col-1"></div>
+            <div class="col-10" style="height: 50px; font-size: small;">
+                <div id="credits" class=" fullspan row">
+                    <p>
+                        This tool was created for <a href="https://eclipse-rp.net/" style="color:inherit">ECRP</a>'s Los
+                        Santos Sheriff's department by Loukianos Galanis
+                        (<a href="https://forum.eclipse-rp.net/profile/64990-djbricheta/" class="tooltipCredits"
+                            target="_blank" rel="noopener">
+                            DjBricheta#3500
+                            <img src="https://i.imgur.com/0xhpIkL.png" class="tooltipImage">
+                        </a>)
+                        <br />
+                        Edited by SteveD (<span class="credits-span">SteveD#0940</span>)
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="tab"
-        style="border-top: 1px; border-left: 0px;border-right: 0px;border-bottom: 0px; border-color: #333333; border-style: solid;">
-        <!--<button onclick="document.location='index.html'">HOME</button>-->
-        <button class="tablinks active" onclick="openMenu(event, 'Signature')">Signature
-            Maker</button><span class="separator">|</span><button class="tablinks"
-            onclick="openMenu(event, 'Banner')">Banner Maker</button><span class="separator">|</span><button
-            class="tablinks" onclick="openMenu(event, 'Header')">Header BBCode Maker</button><span
-            class="separator">|</span><button class="tablinks" onclick="openMenu(event, 'Charge')">Charge
-            Report Generator</button><span class="separator">|</span><button class="tablinks "
-            onclick="openMenu(event, '1015')">10-15
-            Report Generator</button>
-        <span class="separator">|</span><button class="tablinks " onclick="openMenu(event, 'MSIProfile')">MSI Profile
-            Generator</button>
-        <span class="separator">|</span><button class="tablinks " onclick="openMenu(event, 'MSILog')">MSI Log
-            Generator</button>
-    </div>
-
-    <div class="tabcontent" id="Signature" style="display: block;">
-        <div class="card">
-            <div class="card-body">
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Name:
-                    </div>
-                    <div class="col-md-10">
-                        <input id="txtName" name="fname" type="text" class="form-control" value="SOLOMON COBB"
-                            style="width: 600px" />
-                    </div>
+    <div id="container">
+        <div id="top-bar">
+            <h3>Signature Generator</h3>
+        </div>
+        <div class="padded-container">
+            <form id="report">
+                <br />
+                <br />
+                <legend>Generate signature</legend>
+                <div class="row">
+                    <div class="col text-center"><b>General details</b></div>
                 </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label class="form-label" for="fullName">Full name</label>
+                        <input type="text" class="form-control" id="fullName" name="fullName" required>
+                    </div>
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Badge number:
+                    <div class="col-4">
+                        <label class="form-label" for="badgeNumber">Badge number</label>
+                        <input type="text" class="form-control" id="badgeNumber" name="badgeNumber" required>
                     </div>
-                    <div class="col-md-10">
-                        <input id="txtBadge" name="lname" type="text" class="form-control" value="366"
-                            style="width: 600px" />
-                    </div>
-                </div>
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Rank:
-                    </div>
-                    <div class="col-md-10">
-                        <select id="rankSelect" class="form-select" style="width: 600px">
-                            <option value="rankcco">CORRECTIONAL CUSTODIAN OFFICER</option>
-                            <option value="rankcot" selected>CORRECTIONAL TRAINEE</option>
-                            <option value="rankco1">CORRECTIONAL OFFICER I</option>
-                            <option value="rankco2">CORRECTIONAL OFFICER II</option>
-                            <option value="rankco3">CORRECTIONAL OFFICER III</option>
-                            <option value="ranksco1">SENIOR CORRECTIONAL OFFICER</option>
-                            <option value="rankcorporal">CORPORAL</option>
-                            <option value="ranksergeant">SERGEANT</option>
-                            <option value="rank1lt">LIEUTENANT</option>
-                            <option value="rankcaptain">CAPTAIN</option>
-                            <option value="rankcommander">COMMANDER</option>
-                            <option value="rankasswarden">ASSISTANT WARDEN</option>
-                            <option value="rankdepwarden">DEPUTY WARDEN</option>
-                            <option value="rankwarden">WARDEN</option>
+                    <div class="col-4 form-group">
+                        <label class="form-label" for="rank">Rank</label>
+                        <br />
+                        <select class="form-select" name="rank" id="rank">
+                            <!-- Each option value has the following format: "Rank text|Rank image|Base image" -->
+                            <option value="" hidden>Select a rank</option>
+                            <option value="Deputy Sheriff Trainee|https://i.imgur.com/Du8p1qY.png|https://i.imgur.com/qeNUNff.png"
+                                    id="DeputySheriffTrainee">
+                                Deputy Sheriff Trainee
+                            </option>
+                            <option value="Deputy Sheriff I|https://i.imgur.com/Qm8mHvU.png|https://i.imgur.com/qeNUNff.png"
+                                    id="DeputySheriffI">
+                                Deputy Sheriff I
+                            </option>
+                            <option value="Deputy Sheriff II|https://i.imgur.com/iLZxXjz.png|https://i.imgur.com/qeNUNff.png"
+                                    id="DeputySheriffII">
+                                Deputy Sheriff II
+                            </option>
+                            <option value="Deputy Sheriff III|https://i.imgur.com/FZjhAEs.png|https://i.imgur.com/qeNUNff.png"
+                                    id="DeputySheriffIII">
+                                Deputy Sheriff III
+                            </option>
+                            <option value="Master Deputy|https://i.imgur.com/ECQSDi7.png|https://i.imgur.com/qeNUNff.png"
+                                    id="MasterDeputy">
+                                Master Deputy
+                            </option>
+                            <option value="Agent|https://i.imgur.com/c8UR0i4.png|https://i.imgur.com/VTOB03a.png" id="Agent">
+                                Agent
+                            </option>
+                            <option value="Corporal|https://i.imgur.com/TXm8iXR.png|https://i.imgur.com/cVWjC8w.png" id="Corporal">
+                                Corporal
+                            </option>
+                            <option value="Investigator I|https://i.imgur.com/IDrZqHa.png|https://i.imgur.com/05NxZb5.png" id="InvestigatorI">
+                                Investigator I
+                            </option>
+                            <option value="Sergeant|https://i.imgur.com/3q2C7ME.png|https://i.imgur.com/cVWjC8w.png" id="Sergeant">
+                                Sergeant
+                            </option>
+                            <option value="Field Agent|https://i.imgur.com/OsWxNn8.png|https://i.imgur.com/VTOB03a.png" id="FieldAgent">
+                                Field Agent
+                            </option>
+                            <option value="Investigator II|https://i.imgur.com/lkM2LIY.png|https://i.imgur.com/05NxZb5.png" id="InvestigatorII">
+                                Investigator II
+                            </option>
+                            <option value="Staff Sergeant|https://i.imgur.com/4vZ7WSX.png|https://i.imgur.com/cVWjC8w.png"
+                                    id="StaffSergeant">
+                                Staff Sergeant
+                            </option>
+                            <option value="Senior Agent|https://i.imgur.com/dQK4sK5.png|https://i.imgur.com/VTOB03a.png"
+                                    id="SeniorAgent">
+                                Senior Agent
+                            </option>
+                            <option value="Investigator III|https://i.imgur.com/Rr6Ib10.png|https://i.imgur.com/05NxZb5.png" id="InvestigatorIII">
+                                Investigator III
+                            </option>
+                            <option value="Lieutenant|https://i.imgur.com/jciLGy3.png|https://i.imgur.com/cVWjC8w.png" id="Lieutenant">
+                                Lieutenant
+                            </option>
+                            <option value="Captain|https://i.imgur.com/Y4TZx1D.png|https://i.imgur.com/4ZPO3l8.png" id="Captain">
+                                Captain
+                            </option>
+                            <option value="Commander|https://i.imgur.com/3lFkgj8.png|https://i.imgur.com/4ZPO3l8.png" id="Commander">
+                                Commander
+                            </option>
+                            <option value="Assistant Sheriff|https://i.imgur.com/StV2mAr.png|https://i.imgur.com/EJDbHbu.png"
+                                    id="Assistant Sheriff">
+                                Assistant Sheriff
+                            </option>
+                            <option value="Undersheriff|https://i.imgur.com/IqLuz91.png|https://i.imgur.com/EJDbHbu.png"
+                                    id="Undersheriff">
+                                Undersheriff
+                            </option>
+                            <option value="Sheriff|https://i.imgur.com/a89B4Rx.png|https://i.imgur.com/EJDbHbu.png" id="Sheriff">
+                                Sheriff
+                            </option>
+
                         </select>
                     </div>
                 </div>
+                <br />
 
-                <hr />
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Divisions:
-                    </div>
-                    <div class="col-md-10">
-                        <input id="txtLine1" name="lname" style="width: 600px" type="text" class="form-control"
-                            value="HUMAN RESOURCES     ASSISTANT TO THE GROUNDSKEEPER" />
-                    </div>
+                <div class="row">
+                    <div class="col"><b>Employment period</b></div>
                 </div>
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                <div class="row mt-2">
+                    <div class="col-4">
+                        <label class="form-label" for="employmentStart">Employment start</label>
+                        <input class="form-control" type="date" id="employmentStart" name="employmentStart" required>
                     </div>
-                    <div class="col-md-10">
-                        <input id="txtLine2" name="lname" style="width: 600px" type="text" class="form-control"
-                            value="SANITATION EMERGENCY RESPONSE TEAM     DIVISIONAL COMMAND" />
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                    </div>
-                    <div class="col-md-10">
-                        <input id="txtLine3" name="lname" style="width: 600px" type="text" class="form-control"
-                            value="" />
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-
-                    </div>
-                    <div class="col-md-10">
-                        <button type="button" class="w3-button w3-pink mr-2" onclick="createSignature()">Submit</button>
-                        <span style="font-size: small;">
-                            <br /><br />
-                            Right click the image below and &quot;save image as&quot; and then upload it to
-                            somewhere <a href="https://imgur.com/upload">like Imgur</a> to host and use in forum
-                            signature.
-                        </span>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-
-        <div class="card mt-2">
-            <div class="card-body">
-                <div style="width: 1480px"><canvas height="337" id="canvas" width="1480"></canvas></div>
-            </div>
-        </div>
-
-
-    </div>
-
-    <div class="tabcontent" id="Header" style="display: none;">
-
-        <div class="card">
-            <div class="card-body">
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Text:
-                    </div>
-                    <div class="col-md-10">
-                        <input id="txtText" style="width: 600px" type="text" class="form-control"
-                            value="Header Title" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Type:
-                    </div>
-                    <div class="col-md-10">
-                        <select id="bbCodeMakerType" class="form-select" style="width: 600px">
-                            <option value="typeDOC">Default DOC</option>
-                            <option value="typeCMT">CMT</option>
-                            <option value="typeHR">HR </option>
-                            <option value="typeCERT">CERT</option>
-                            <option value="typePR">PR</option>
-                            <option value="typeGK">Groundskeeping</option>
-                            <option value="typeCFT">CFT</option>
-                            <option value="typeCCO">CCO</option>
-                            <option value="typeMSI">MSI</option>
-                        </select>
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-
-                    </div>
-                    <div class="col-md-10">
-                        <button type="button" class="w3-button w3-pink" onclick="createHeader()">
-                            Submit and Copy BBCode to clipboard</button>
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Output:
-                    </div>
-                    <div class="col-md-10">
-                        <textarea cols="50" id="headerDisplay" style="width: 600px" rows="1"
-                            class="form-control">BBCode will appear here</textarea>
-
-                        <p id="copiedtxt" style="color: red"></p>
-                        <canvas height="32" id="canvas2" style="display:none" width="1200"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="tabcontent" id="Banner" style="display: none;">
-
-        <div class="card">
-            <div class="card-body">
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Title:
-                    </div>
-                    <div class="col-md-10">
-                        <input id="txtTextbanner" style="width: 600px" type="text" class="form-control"
-                            value="Main Title" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Subtitle:
-                    </div>
-                    <div class="col-md-10">
-                        <input id="txtTextbanner2" name="fname" style="width: 600px" type="text" class="form-control"
-                            value="Subtitle" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Type:
-                    </div>
-                    <div class="col-md-10">
-                        <select id="bannerType" class="form-select" style="width: 600px">
-                            <option value="DOC">Default DOC</option>
-                            <option value="CERT">CERT</option>
-                            <option value="HR">HR</option>
-                            <option value="CMT">CMT</option>
-                            <option value="PR">PR</option>
-                            <option value="GK">Groundskeeping</option>
-                            <option value="CFT">CFT</option>
-                            <option value="RR">FRD</option>
-                            <option value="CID">CID</option>
-                            <option value="DOG">K9</option>
-                            <option value="CS">CS</option>
-                            <option value="CCO">CCO</option>
-                            <option value="MSI">MSI</option>
-                        </select>
-
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-
-                    </div>
-                    <div class="col-md-10">
-                        <button type="button" class="w3-button w3-pink" onclick="createBannerImg()">Submit</button><span
-                            style="font-size: small;">
-                            <br /><br />
-                            Right click the image below and &quot;save image as&quot; and then upload it to
-                            somewhere <a href="https://imgur.com/upload">like Imgur</a> to host.
-                        </span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="card mt-2">
-            <div class="card-body">
-                <div style="width: 1442px" class="mt-2"></div><canvas height="309" id="canvas4" width="1442"></canvas>
-            </div>
-        </div>
-
-    </div>
-
-    </div>
-
-    <div class="tabcontent" id="Charge" style="display: none;">
-
-        <div class="card">
-            <div class="card-body">
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Your Name:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtChargeName" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Badge Number:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtChargeBadge" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Asssisting Officer Badge Number:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtAssisting" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Inmate Name:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtInmateName" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Charges Added:
-                    </div>
-                    <div class="col-md-10">
-                        <textarea type="text" id="txtCharges" class="form-control" style="width: 600px" rows="5">
-[list]
-[*]
-[*]
-[*]
-[/list]
-                                        </textArea>
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Reason:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtReason" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Additional Prison Time:
-                        <br /><span style="font-size: x-small; font-weight: normal">(( Minutes ))</span>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtAdditionalTime" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Time &amp; Date of Charges:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="datetime-local" id="txtTime" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Additional Notes:
-                        <br /><span style="font-size: x-small; font-weight: normal">(( Also attach any ooc rp for CCTV
-                            with /time etc/
-                            ))</span>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtAdditionalNotes" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Image Link to Mugshot:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMugshot" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <hr />
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                    </div>
-                    <div class="col-md-10">
-                        <button type="button" id="btnCopy" onClick="createChargeReport();"
-                            class="w3-button w3-pink">Submit and
-                            copy to clipboard</button>
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Output:
-                    </div>
-                    <div class="col-md-10">
-                        <textarea cols="50" id="displayBB" name="w3review" rows="10" class="form-control"
-                            style="width: 600px">BBCode will appear here</textarea>
-                        <p id='copyChargeReportSuccess' style="color: red"></p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-    <div class="tabcontent" id="1015" style="display: none;">
-
-        <div class="card">
-            <div class="card-body">
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Paste full row from 10-15 spreadsheet:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtPaste1015" class="form-control" style="width: 600px" />
-                        <a href="https://i.imgur.com/UiWJb6m.gif" target="_blank">Click here for an example</a>
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-
-                    </div>
-                    <div class="col-md-10">
-                        <button type="button" id="btnCopy1015" onClick="copy1015Report();" class="w3-button w3-pink">
-                            Submit and copy to clipboard</button>
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Output:
-                    </div>
-                    <div class="col-md-10">
-                        <textarea cols="50" id="displayBB1015" name="w3review" rows="10" class="form-control"
-                            style="width: 600px">BBCode will appear here</textarea>
-                        <p id='copySuccess1015' style="color: red"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tabcontent" id="MSIProfile" style="display: none;">
-
-        <div class="card">
-            <div class="card-body">
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        MSI Ranking:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileRanking" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        MSI Name:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileName" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Age:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileAge" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Affiliation:
-                        <br /><span style="font-size: x-small; font-weight: normal">(If Applicable)</span>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileAffiliation" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Psychological Issues:
-                        <br /><span style="font-size: x-small; font-weight: normal">(If Applicable)</span>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfilePsychIssues" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Processing:
-                        <br /><span style="font-size: x-small; font-weight: normal">(Number of Guards to be
-                            present)</span>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileProcessing" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Firearms during handling:
-                        <br /><span style="font-size: x-small; font-weight: normal">(ex. "None" if it poses a
-                            risk)</span>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileFirearms" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Inmate Classification Tags:
-                        <br /><span style="font-size: x-small; font-weight: normal">(Written as: "TAG1 | TAG2
-                            |...")</span>:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileClassTags" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Physical Description:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfilePhysicalDesc" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Background Information:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileBackgroundInfo" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Containment Procedures:
-                        <br /><span style="font-size: x-small; font-weight: normal">(Protocols for processing)</span>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileContainment" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Handling Procedures:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileHandlingProcedures" class="form-control"
-                            style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Known Targets:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSIProfileKnownTargets" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                    </div>
-                    <div class="col-md-10">
-                        <button type="button" id="btnCopy" onClick="createMsiProfile();"
-                            class="w3-button w3-pink">Submit and
-                            copy to clipboard</button>
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Output:
-                    </div>
-                    <div class="col-md-10">
-                        <textarea cols="50" id="displayMSIProfileBB" name="w3review" rows="10" class="form-control"
-                            style="width: 600px">BBCode will appear here</textarea>
-                        <p id='copyMSIProfileSuccess' style="color: red"></p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="tabcontent" id="MSILog" style="display: none;">
-
-        <div class="card">
-            <div class="card-body">
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Name & Badge Number:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogNameBadge" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Date:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="date" id="txtMSILogDate" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Officers Involved:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogOfficersInvolved" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Name of the MSI:
-                        <br /><span style="font-size: x-small; font-weight: normal">(If Applicable)</span>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogName" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Reasoning for Report:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="radio" id="radioActivity" name="MSILogreason" value="Activity Report" checked>
-                        <label for="radioActivity">Activity Report</label>
+                    <div class="col-4">
+                        <label class="form-label">Employment ended?</label>
                         <br>
-                        <input type="radio" id="radioIntel" name="MSILogreason" value="Intel Report">
-                        <label for="radioIntel">Intel Report</label>
-                        <br>
-                        <input type="radio" id="radioIncident" name="MSILogreason" value="Incident Report">
-                        <label for="radioIncident">Incident Report</label>
+                        <label class="form-label" for="employmentEndedYes">Yes</label>
+                        <input type="radio" id="employmentEndedYes" name="employmentEnded" value="Yes">
+                        <label class="form-label" for="employmentEndedNo">No</label>
+                        <input type="radio" id="employmentEndedNo" name="employmentEnded" checked="checked" value="No">
+                    </div>
+
+                    <div id="employmentEnd" class="col-4" style="display: none;">
+                        <label class="form-label" for="employmentEnd">Employment end</label>
+                        <input class="form-control" type="date" name="employmentEnd">
                     </div>
                 </div>
+                <hr />
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Actions of the MSI:
-                        <br /><span style="font-size: x-small; font-weight: normal">(Behavior and actions exhibited by
-                            the MSI during the encounter)</span>
+                <div class="row">
+                    <div class="col-1"><b>Line 1</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label class="form-label" for="line1Bureau">Bureau</label>
+                        <br />
+                        <select class="form-select" name="line1Bureau" id="line1Bureau">
+                            <option value="" id="line1BureauPlaceholder">Select a bureau</option>
+                            <option value="Patrol Operations" id="PatrolOperations">Patrol Operations</option>
+                            <option value="Countywide Operations" id="CountywideOperations">Countywide Operations</option>
+                            <option value="Sheriff's Investigation Bureau" id="SheriffsInvestigationsBureau">Sheriff's Investigations Bureau</option>
+                            <option value="Administrative Operations" id="AdministrativeOperations">Administrative Operations</option>
+                            <option value="Office of the Sheriff" id="OfficeOfTheSheriff">Office of the Sheriff</option>
+                        </select>
                     </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogActions" class="form-control" style="width: 600px" />
+
+                    <div class="col-5">
+                        <label class="form-label" for="line1Division">Division</label>
+                        <br />
+                        <select class="form-select" name="line1Division" id="line1Division">
+                            <option value="">Select a bureau</option>
+                        </select>
+                    </div>
+
+                    <div class="col-3">
+                        <label class="form-label" for="line1Position">Position</label>
+                        <input type="text" class="form-control" id="line1Position" name="line1Position">
                     </div>
                 </div>
+                <hr />
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Response of Officers:
-                        <br /><span style="font-size: x-small; font-weight: normal">(Detail how the officers involved
-                            responded to the situation)</span>
+                <div class="row">
+                    <div class="col-1"><b>Line 2</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label class="form-label" for="line2Bureau">Bureau</label>
+                        <br />
+                        <select class="form-select" name="line2Bureau" id="line2Bureau">
+                            <option value="" id="line2BureauPlaceholder">Select a bureau</option>
+                            <option value="Patrol Operations" id="PatrolOperations">Patrol Operations</option>
+                            <option value="Countywide Operations" id="CountywideOperations">Countywide Operations</option>
+                            <option value="Sheriff's Investigation Bureau" id="SheriffsInvestigationsBureau">Sheriff's Investigations Bureau</option>
+                            <option value="Administrative Operations" id="AdministrativeOperations">Administrative Operations</option>
+                            <option value="Office of the Sheriff" id="OfficeOfTheSheriff">Office of the Sheriff</option>
+                        </select>
                     </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogOfficersResponse" class="form-control" style="width: 600px" />
+
+                    <div class="col-5">
+                        <label class="form-label" for="line2Division">Division</label>
+                        <br />
+                        <select class="form-select" name="line2Division" id="line2Division">
+                            <option value="">Select a bureau</option>
+                        </select>
+                    </div>
+
+                    <div class="col-3">
+                        <label class="form-label" for="line2Position">Position</label>
+                        <input type="text" class="form-control" id="line2Position" name="line2Position">
                     </div>
                 </div>
+                <hr />
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Presence of Threats:
-                        <br /><span style="font-size: x-small; font-weight: normal">(Specify the situation posed risks
-                            to the safety of officers, staff, or other inmates")</span>
+                <div class="row">
+                    <div class="col-1"><b>Line 3</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label class="form-label" for="line3Bureau">Bureau</label>
+                        <br />
+                        <select class="form-select" name="line3Bureau" id="line3Bureau">
+                            <option value="" id="line3BureauPlaceholder">Select a bureau</option>
+                            <option value="Patrol Operations" id="PatrolOperations">Patrol Operations</option>
+                            <option value="Countywide Operations" id="CountywideOperations">Countywide Operations</option>
+                            <option value="Sheriff's Investigation Bureau" id="SheriffsInvestigationsBureau">Sheriff's Investigations Bureau</option>
+                            <option value="Administrative Operations" id="AdministrativeOperations">Administrative Operations</option>
+                            <option value="Office of the Sheriff" id="OfficeOfTheSheriff">Office of the Sheriff</option>
+                        </select>
                     </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogThreatsPresence" class="form-control" style="width: 600px" />
+
+                    <div class="col-5">
+                        <label class="form-label" for="line1Division">Division</label>
+                        <br />
+                        <select class="form-select" name="line3Division" id="line3Division">
+                            <option value="">Select a bureau</option>
+                        </select>
+                    </div>
+
+                    <div class="col-3">
+                        <label class="form-label" for="line3Position">Position</label>
+                        <input type="text" class="form-control" id="line3Position" name="line3Position">
                     </div>
                 </div>
+                <hr />
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Injuries or Damages:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogInjuriesDamages" class="form-control" style="width: 600px" />
-                    </div>
+                <div class="row">
+                    <div class="col-1"><b>Line 4</b></div>
                 </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label class="form-label" for="line4Bureau">Bureau</label>
+                        <br />
+                        <select class="form-select" name="line4Bureau" id="line4Bureau">
+                            <option value="" id="line4BureauPlaceholder">Select a bureau</option>
+                            <option value="Patrol Operations" id="PatrolOperations">Patrol Operations</option>
+                            <option value="Countywide Operations" id="CountywideOperations">Countywide Operations</option>
+                            <option value="Sheriff's Investigation Bureau" id="SheriffsInvestigationsBureau">Sheriff's Investigations Bureau</option>
+                            <option value="Administrative Operations" id="AdministrativeOperations">Administrative Operations</option>
+                            <option value="Office of the Sheriff" id="OfficeOfTheSheriff">Office of the Sheriff</option>
+                        </select>
+                    </div>
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Compliance of the MSI:
-                        <br /><span style="font-size: x-small; font-weight: normal">(Indicate whether the MSI complied
-                            with instructions given by the officers)</span>:
+                    <div class="col-5">
+                        <label class="form-label" for="line4Division">Division</label>
+                        <br />
+                        <select class="form-select" name="line4Division" id="line4Division">
+                            <option value="">Select a bureau</option>
+                        </select>
                     </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogCompliance" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Obtained Information:
-                        <br /><span style="font-size: x-small; font-weight: normal">(Describe any new information or
-                            intelligence gathered as a result of the encounter)</span>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogInformationObtained" class="form-control"
-                            style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Conclusion:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogConclusion" class="form-control" style="width: 600px" />
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Attachments:
-                        <br /><span style="font-size: x-small; font-weight: normal">(Bodycam / CCTV / Duty Reports /
-                            Other Supporting Documentation)</span>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" id="txtMSILogAttachments" class="form-control" style="width: 600px" />
+                    <div class="col-3">
+                        <label class="form-label" for="line4Position">Position</label>
+                        <input type="text" class="form-control" id="line4Position" name="line4Position">
                     </div>
                 </div>
 
                 <hr />
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
+                <div class="row">
+                    <div class="col-1"><b>Line 5</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label class="form-label" for="line5Bureau">Bureau</label>
+                        <br />
+                        <select class="form-select" name="line5Bureau" id="line5Bureau">
+                            <option value="" id="line5BureauPlaceholder">Select a bureau</option>
+                            <option value="Patrol Operations" id="PatrolOperations">Patrol Operations</option>
+                            <option value="Countywide Operations" id="CountywideOperations">Countywide Operations</option>
+                            <option value="Sheriff's Investigation Bureau" id="SheriffsInvestigationsBureau">Sheriff's Investigations Bureau</option>
+                            <option value="Administrative Operations" id="AdministrativeOperations">Administrative Operations</option>
+                            <option value="Office of the Sheriff" id="OfficeOfTheSheriff">Office of the Sheriff</option>
+                        </select>
                     </div>
-                    <div class="col-md-10">
-                        <button type="button" id="btnCopy" onClick="createMSILog();" class="w3-button w3-pink">Submit
-                            and
-                            copy to clipboard</button>
+
+                    <div class="col-5">
+                        <label class="form-label" for="line5Division">Division</label>
+                        <br />
+                        <select class="form-select" name="line5Division" id="line5Division">
+                            <option value="">Select a bureau</option>
+                        </select>
+                    </div>
+
+                    <div class="col-3">
+                        <label class="form-label" for="line5Position">Position</label>
+                        <input type="text" class="form-control" id="line5Position" name="line5Position">
                     </div>
                 </div>
 
-                <div class="row mb-2">
-                    <div class="col-md-2" style="font-weight: bold; text-align: right;">
-                        Output:
+                <hr />
+
+                <div class="row">
+                    <div class="col-1"><b>Line 6</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label class="form-label" for="line6Bureau">Bureau</label>
+                        <br />
+                        <select class="form-select" name="line6Bureau" id="line6Bureau">
+                            <option value="" id="line6BureauPlaceholder">Select a bureau</option>
+                            <option value="Patrol Operations" id="PatrolOperations">Patrol Operations</option>
+                            <option value="Countywide Operations" id="CountywideOperations">Countywide Operations</option>
+                            <option value="Sheriff's Investigation Bureau" id="SheriffsInvestigationsBureau">Sheriff's Investigations Bureau</option>
+                            <option value="Administrative Operations" id="AdministrativeOperations">Administrative Operations</option>
+                            <option value="Office of the Sheriff" id="OfficeOfTheSheriff">Office of the Sheriff</option>
+                        </select>
                     </div>
-                    <div class="col-md-10">
-                        <textarea cols="50" id="displayMSILogBB" name="w3review" rows="10" class="form-control"
-                            style="width: 600px">BBCode will appear here</textarea>
-                        <p id='copyMSILogSuccess' style="color: red"></p>
+
+                    <div class="col-5">
+                        <label class="form-label" for="line6Division">Division</label>
+                        <br />
+                        <select class="form-select" name="line6Division" id="line6Division">
+                            <option value="">Select a bureau</option>
+                        </select>
+                    </div>
+
+                    <div class="col-3">
+                        <label class="form-label" for="line6Position">Position</label>
+                        <input type="text" class="form-control" id="line6Position" name="line6Position">
                     </div>
                 </div>
 
+                <br />
+
+                <button class="btn btn-warning" type="submit">Generate signature</button>
+            </form>
+            <div style="font-size:medium;">
+                <span><i>If the rank image doesn't show or the font is wrong, try pressing 'Generate' again.</i></span>
+                <br />
+                <span>
+                    Right click the image, 'save image as', and then upload it on Imgur or the website of your choice to
+                    host it and use it on the forums.
+                </span>
+            </div>
+            <div style="background-color:#696969; width: 1500px; margin: auto">
+                <canvas height="300" id="canvas" width="1500"></canvas>
+                <span style="color:#696969">
+                    Inspired by <a href="https://cobbtools.co.uk/"
+                                   style="color: #696969;">CobbTools</a>
+                </span>
             </div>
         </div>
+
+        <p style="font-family: MSU1; color:#fff">Load font</p>
     </div>
-
-
-
-    <button id="kourtneyBtn" onclick="toggleKourtneyMode()"> </button>
-    <div id="kourtneyContainer"></div>
-
-    <script src="/SADOC/sadoc.js"></script>
-
-    <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+    <script src="../script/general.js"></script>
+    <script src="signature.js"></script>
+    <script src="https://kit.fontawesome.com/9840060044.js" crossorigin="anonymous"></script>
 </body>
-
-<footer>
-    <div class="container">
-        <span class="text-muted;">
-            <hr />
-            <center>
-                <em style="color: #E91E63">
-                    If you have any issues or requests drop a message to <span
-                        style="font-weight: bold">Ash-#0001</span> on discord
-                </em>
-            </center>
-            <br />
-            <span style="font-family: comic sans ms,cursive; color:#262626">.</span>
-            <span style="font-family: Franklin Gothic Heavy; color:#262626">.</span>
-            <span style="font-family: BTBrikRegular; color:#262626">.</span>
-            <span style="font-family: ITC Eras; color:#262626">.</span>
-            <span style="font-family: MSU1; color:#262626">.</span>
-            <span style="font-family: PressStart; color:#262626">.</span>
-        </span>
-    </div>
-</footer>
-
 </html>
